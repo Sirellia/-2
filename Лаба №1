@@ -1,3 +1,5 @@
+#Натуральные четные числа, начинающиеся с нечетной цифры и содержащие не более 3 нечетных цифр. Для каждого числа через тире вывести прописью первую цифру и нечетные цифры.
+#1 Вариант
 with open("txt3.txt", "r") as f:
     for line in f:
         for num in line.split():
@@ -22,3 +24,28 @@ with open("txt3.txt", "r") as f:
                                 elif int(digit) == 9:
                                     print(" девять", end="")
                         print()
+
+
+#2 Вариант
+file = open('txt3.txt', 'r')
+lst = file.read().split()
+numbers = {1: 'один', 2: 'два', 3: 'три', 4: 'четыре', 5: 'пять', 6: 'шесть', 7: 'семь', 8: 'восемь', 9: 'девять'}
+nums = []
+for line in lst:
+    nums.append(int(line))
+file.close()
+for num in nums:
+    if num % 2 == 0:
+        num_str = str(num)
+        if int(num_str[0]) % 2 != 0:
+            odd_cnt = 0
+            for i in range(len(num_str)):
+                if int(num_str[i]) % 2 != 0:
+                    odd_cnt += 1
+            if odd_cnt <= 3:
+                print(num, end=' ')
+                first_digit = num_str[0]
+                for i in range(len(num_str)):
+                    if int(num_str[i]) % 2 != 0:
+                        print(numbers[int(num_str[i])], end=' ')
+                print()
